@@ -5,9 +5,9 @@ import maze_setup as m
 def main():
 
     # Here is where you will insert your character and block art images
-    player = "Santa-1.png.png"
-    block = "Box-1.png.png"
-    prize = "Cookies-1.png.png"
+    player = "Images/Santa-1.png.png"
+    block = "Images/Box-1.png.png"
+    prize = "Images/Cookies-1.png.png"
 
     # This is how to initialize our Maze Game
     Maze = m.Maze_Game(player, block, prize)
