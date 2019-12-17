@@ -9,10 +9,15 @@ def main():
     block = "Images/Box-1.png.png"
     prize = "Images/Cookies-1.png.png"
 
+
     # This is how to initialize our Maze Game
     Maze = m.Maze_Game(player, block, prize)
 
+
     # Let's change the speed of our player
+
+
+
 
     if Maze.on_init() == False:
         Maze._running = False
@@ -20,6 +25,8 @@ def main():
     while (Maze._running):
         pygame.event.pump()
         keys = pygame.key.get_pressed()
+
+
 
         # Here is where you will control your character in the maze
         # This is an example of moving the player right using the right arrow key
