@@ -5,13 +5,13 @@ import maze_setup
 def main():
 
     # Here is where you will insert your character and block art images
-    player : str = "Images/Santa-1.png.png"
-    block : str = "Images/Box-1.png.png"
-    prize : str = "Images/Cookies-1.png.png"
+    player = "Images/Santa-1.png.png"
+    block = "Images/Box-1.png.png"
+    prize = "Images/Cookies-1.png.png"
 
 
     # This is how to initialize our Maze Game
-    Maze : maze_setup = maze_setup.MazeGame(player, block, prize)
+    Maze = maze_setup.MazeGame(player, block, prize)
 
 
     # Let's change the speed of our player
@@ -37,14 +37,6 @@ def main():
         # Hint: You will need 3 'if' statements !
         #if ('''insert code'''):
 
-        if (keys[K_LEFT]):
-            Maze.player.move_left()
-
-        if (keys[K_UP]):
-            Maze.player.move_up()
-
-        if (keys[K_DOWN]):
-            Maze.player.move_down()
 
 
 
