@@ -4,53 +4,64 @@ import pygame
 ''' DO NOT modify this file pls '''
 
 class Player:
-    x = 44
-    y = 44
-    speed = 20
+    x = 40
+    y = 40
+
+    def __init__(self):
+        self.speed = 1
 
     def change_speed(self, new_speed):
         self.speed = new_speed
 
-    def moveRight(self):
-        self.x = self.x + self.speed
+    def move_right(self):
+        if 800 - 80 > self.x:
+            self.x = self.x + self.speed
 
-    def moveLeft(self):
-        self.x = self.x - self.speed
+    def move_left(self):
+        if 40 < self.x:
+            self.x = self.x - self.speed
 
-    def moveUp(self):
-        self.y = self.y - self.speed
+    def move_up(self):
+        if 40 < self.y:
+            self.y = self.y - self.speed
 
-    def moveDown(self):
-        self.y = self.y + self.speed
+    def move_down(self):
+        if 600 - 80 > self.y:
+            self.y = self.y + self.speed
 
 
 class Maze:
     def __init__(self):
-        self.M = 10
-        self.N = 10
-        self.maze = [[1,1,1,1,1,1,1,1,1,1],
-                     [1,0,0,0,0,0,0,0,0,1],
-                     [1,1,1,0,1,1,1,1,0,1],
-                     [1,1,1,0,0,0,0,0,0,1],
-                     [1,0,1,1,1,0,1,1,0,1],
-                     [1,0,1,0,0,0,1,1,1,1],
-                     [1,0,0,0,1,0,0,1,1,1],
-                     [1,1,1,1,1,1,0,1,2,1],
-                     [1,1,1,0,0,0,0,0,0,1],
-                     [1,1,1,1,1,1,1,1,1,1]]
+        self.M = 20
+        self.N = 15
+        self.maze = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                     [1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1],
+                     [1,1,1,0,1,1,1,1,0,1,1,1,0,0,1,1,1,1,0,1],
+                     [1,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                     [1,2,1,1,1,0,1,1,0,0,1,1,1,1,1,1,1,0,0,1],
+                     [1,0,1,0,0,0,1,1,1,0,0,0,0,1,0,0,0,0,0,1],
+                     [1,0,0,0,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1],
+                     [1,1,1,1,1,1,0,1,0,1,0,0,0,1,0,0,0,0,0,1],
+                     [1,1,2,1,0,0,0,0,0,1,1,0,1,1,1,1,1,1,0,1],
+                     [1,1,0,0,0,1,0,1,0,0,0,0,1,0,0,0,1,0,0,1],
+                     [1,1,1,1,1,1,0,1,0,1,1,1,0,0,1,0,0,0,0,1],
+                     [1,2,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,1],
+                     [1,0,0,0,1,1,1,1,1,1,0,1,1,1,1,1,1,2,1,1],
+                     [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
 
     def draw(self,display,maze_block,prize):
-        for by in range(self.M):
-            for bx in range(self.N):
+        for by in range(self.N):
+            for bx in range(self.M):
                 if self.maze[by][bx] == 1:
-                    display.blit(maze_block, ( bx * 44 , by * 44 ) )
+                    display.blit(maze_block, ( bx * 40 , by * 40 ) )
 
                 elif self.maze[by][bx] == 2:
-                    display.blit(prize, ( bx * 44 , by * 44 ) )
+                    display.blit(prize, ( bx * 40 , by * 40 ) )
 
 
 
-class Maze_Game:
+class MazeGame:
     windowWidth = 800
     windowHeight = 600
     player = 0
@@ -90,13 +101,18 @@ class Maze_Game:
     def on_cleanup(self):
         pygame.quit()
 
+    def prize_collected(self):
+        if self.player.x in [40, 80, 680]:
+            if self.player.y in [200,180,480,500]:
+                pygame.draw.rect(self._display,(0,0,0), Rect(self.player.x,self.player.y,40,40),width=0)
+
     '''
     if (keys[K_LEFT]):
-        Maze.player.moveLeft()
+    Maze.player.move_left()
 
     if (keys[K_UP]):
-        Maze.player.moveUp()
+        Maze.player.move_up()
 
     if (keys[K_DOWN]):
-        Maze.player.moveDown()
+        Maze.player.move_down()
     '''
